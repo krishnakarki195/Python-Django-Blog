@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+  <title>{% block title %}Share now{% endblock %}</title>
+
+  {% load staticfiles %}
+
+  <!-- CSS file load starts here  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'blog/css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'blog/css/style.css' %} " type="text/css" rel="stylesheet" media="screen,projection"/>
+  {% block custom_css %}{% endblock custom_css %}
+  <!-- CSS file load ends here  -->
+
+</head>
+
+<body>
+
+  <!-- facebook comment plugin script -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <!-- Header bar Starts here -->
+  {% include 'blog/header.html' %}
+  <!-- Header bar ends here -->
+
+  <!-- contents block starts here  -->
+  {% block blog_list %}
+  <div class="container">
+      <br>
+      <div class="row center">
+        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+        <p>A modern responsive front-end framework based on Material Design A modern responsive front-end framework based on Material Design A modern responsive front-end framework based on Material DesignA modern responsive front-end framework based on Material DesignA modern responsive front-end framework based on Material DesignA modern responsive front-end framework based on Material DesignA modern responsive front-end framework based on Material Design A modern responsive front-end framework based on Material DesignA modern responsive front-end framework based on Material DesignA modern responsive front-end framework based on Material Design</p>
+      </div>
+      <br><br>
+  </div>
+  {% endblock blog_list %}
+  <!-- contents block ends here  -->
+
+  <!-- operation button starts here -->
+    <div class="fixed-action-btn horizontal click-to-toggle">
+      <a class="btn-floating btn-large red">
+        <i class="material-icons">menu</i>
+      </a>
+      <ul>
+        <li>
+          {% if request.user.username %}
+          <a href="{% url 'blog:blog-add' %}" class="btn-floating red"><i class="material-icons">add</i></a>
+          {% endif %}
+        </li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+      </ul>
+    </div>
+  <!-- operation button ends here -->
+
+  <!-- colomn divided contents block starts here  -->
+    {% include 'blog/colomn_divided_content.html' %}
+  <!-- colomn divided contents block ends here  -->
+
+  <!-- footer section starts here -->
+    {% include 'blog/footer.html' %}
+  <!-- footer section ends here -->
+
+
+  <!-- JS Scripts loads starts here -->
+  <script src="{% static 'blog/js/jquery-2.1.1.min.js' %}"></script>
+  <script src=" {% static 'blog/js/materialize.js' %} "></script>
+  <script src=" {% static 'blog/js/init.js' %} "></script>
+
+  <!-- Materialize css select options script -->
+  <script>
+     $(document).ready(function() {
+        $('select').material_select();
+    });
+  </script>
+
+  <!-- ckeditor script -->
+  <script type="text/javascript" src="{% static '/ckeditor/ckeditor/ckeditor.js' %}"></script>
+  <script type="text/javascript" src="{% static '/ckeditor/ckeditor-init.js' %}"></script>
+  
+  {% block custom_js %}{% endblock custom_js %}
+  <!-- JS Scripts loads ends here -->
+
+  </body>
+
+</html>

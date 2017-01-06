@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+{% block title %} blog | Details {% endblock title %}
+{% block blog_list %}
+  <div class="container">
+    <div class="row">
+      <div class="card white-grey darken-1">
+        <div class="card-content black-text">
+          <h5 class="header col s12 light">{{ blog.blog_header }}</h5>
+          <p>{{ blog.blog_content | safe }}</p>
+          <p>bloged on: {{ blog.blog_updated_date | safe }}</p>
+        </div>
+        <a class="waves-effect waves-light btn" href="{% url 'blog:blog-index' %}">Back</a>
+      </div>
+      <div class="fb-comments" data-href="{{ request.build_absolute_url}}" data-numposts="5">
+      </div>
+    </div>
+  </div>
+{% endblock blog_list %}

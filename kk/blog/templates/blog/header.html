@@ -1,0 +1,28 @@
+<nav class="blue-grey lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="{% url 'blog:blog-index' %}" class="brand-logo">Krishna Karki</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Java</a></li>
+        <li><a href="#">Python</a></li>
+        <li><a href="#">Other</a></li>
+        {% if request.user.username %}
+          <li><a href="{% url 'blog:user-logout' %}">Logout</a></li>
+        {% else %}
+          <li><a href="{% url 'blog:user-login' %}">Login</a></li>
+          <li><a href="{% url 'blog:user-signup' %}">Sign Up</a></li>
+        {% endif %}
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Java</a></li>
+        <li><a href="#">Python</a></li>
+        <li><a href="#">Other</a></li>
+        {% if request.user.username %}
+          <li><a href="{% url 'blog:user-logout' %}">Logout</a></li>
+        {% else %}
+          <li><a href="{% url 'blog:user-login' %}">Login</a></li>
+          <li><a href="{% url 'blog:user-signup' %}">Sign Up</a></li>
+        {% endif %}
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>

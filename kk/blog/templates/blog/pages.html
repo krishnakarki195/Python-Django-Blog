@@ -1,0 +1,74 @@
+<div class="container">
+    {% if blog_list %}
+        {% for blog in blog_list %}
+            <div class="row">
+                <div class="card white-grey darken-1">
+                    <div class="card-content black-text">
+                        <h5 class="header col s12 light">{{ blog.blog_header }}</h5>
+                        <p>{{ blog.blog_content | safe | truncatewords:30 }}</p>
+                        <p>
+                            <strong>bloged by: </strong>
+                            {{ blog.blog_author | safe }}
+                        </p>
+                        <p>
+                            <strong>bloged on: </strong>
+                            {{ blog.blog_updated_date| safe }}
+                        </p>
+
+                    </div>
+
+                    <a class="waves-effect waves-light btn" href="{% url 'blog:blog-detail' blog.id %}">View all</a>
+
+                    {% if request.user.username %}
+                    <!-- Dropdown Trigger -->
+                    <a class='dropdown-button btn' href='#' data-activates='{{blog.id}}'><i class="material-icons">menu</i></a>
+                    <!-- Dropdown Structure -->
+                    <ul id='{{blog.id}}' class='dropdown-content'>
+                        <li><a href="{% url 'blog:blog-update' blog.id %}">Update</a></li>
+                        <li>
+                            <form action="{% url 'blog:blog-delete' blog.id %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{blog.id}}">
+                                <button type="submit"><i class="material-icons">delete</i></button>
+                            </form>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    
+                </div>
+            </div>
+
+        {% endfor %}
+
+        {% if is_paginated %}
+        <div class="row">
+            <div class="card white-grey darken-1">
+                <br />
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="waves-effect">
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    </li>
+                    {% endif %}
+                    <li class="waves-effect">
+                        <a href="#">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                        </a>
+                    </li>
+                    {% if page_obj.has_next %}
+                    <li class="waves-effect">
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    </li>                    
+                    {% endif %}
+                </ul>
+                <br />
+            </div>
+        </div>
+        {% endif %}
+
+    {% else %}
+        <div class="row center">
+            <h1>Empty blog list !</h1>  
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block blog_list %}
+
+<div class="container">
+	<div class="row">
+		<div class="card white-grey darken-1">
+			<div class="card-content black-text">
+			<h5>Sign up</h5>
+			{% if error_message %}
+				<p><strong>{{ error_message }}</strong></p>
+			{% endif %}
+				<form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}			
+					{% include 'blog/form_template.html' %}
+					<button type="submit" class="waves-effect waves-light btn">Sign up</button>
+					<a class="waves-effect waves-light btn" href="{% url 'blog:blog-index' %}">Cancel</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock blog_list %}
