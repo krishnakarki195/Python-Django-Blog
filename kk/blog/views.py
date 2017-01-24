@@ -19,9 +19,11 @@ class HomeView(generic.ListView):
 class IndexView(generic.ListView):
 	template_name = 'blog/blog_list.html'
 	paginate_by = 5
+	allow_empty = True
 
 	def get_queryset(self):
-		return Blog.objects.all()
+		args = list(self.args)
+		return Blog.objects.filter(blog_type__name__icontains=args[0])
 
 
 class DetailView(generic.DetailView):
@@ -46,13 +48,19 @@ class CreateBlog(generic.CreateView):
 
 class UpdateBlog(generic.UpdateView):
 	model = Blog
-	fields = ['blog_header', 'blog_content', 'blog_added_date', 'blog_updated_date']
-	success_url = reverse_lazy('blog:blog-index')
+	fields = [
+		'blog_header',
+		'blog_content',
+		'blog_added_date',
+		'blog_updated_date',
+		'blog_type'
+	]
+	success_url = reverse_lazy('blog:home-index')
 
 
 class DeleteBlog(generic.DeleteView):
 	model = Blog
-	success_url = reverse_lazy('blog:blog-index')
+	success_url = reverse_lazy('blog:home-index')
 
 
 class UserLogin(View):
@@ -73,7 +81,7 @@ class UserLogin(View):
 		if user is not None:
 			#if user.is_active:
 			login(request,user)
-			return redirect('blog:blog-index')
+			return redirect('blog:home-index')
 		return render(request, self.template_name, {'form': form, 'error_message':'username or password is incorrect!'})
 
 
@@ -81,7 +89,7 @@ class UserLogout(View):
 
 	def get(self,request):
 		logout(request)
-		return redirect('blog:blog-index')
+		return redirect('blog:home-index')
 
 
 class UserSignup(View):
@@ -108,5 +116,5 @@ class UserSignup(View):
 			if user is not None:
 				if user.is_active:
 					login(request,user)
-					return redirect('blog:blog-index')
+					return redirect('blog:home-index')
 		return render(request, self.template_name, {'form': form, 'error_message': 'Please enter valid credentials !'})

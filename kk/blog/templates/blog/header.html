@@ -1,9 +1,11 @@
 <nav class="blue-grey lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="{% url 'blog:blog-index' %}" class="brand-logo">Krishna Karki</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="{% url 'blog:home-index' %}" class="brand-logo">Krishna Karki</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Java</a></li>
-        <li><a href="#">Python</a></li>
-        <li><a href="#">Other</a></li>
+        {% if blogTypes %}
+          {% for blogType in blogTypes %}
+            <li><a href="{% url 'blog:blog-index' blogType.name %}">{{blogType.name}}</a></li>
+          {% endfor %}
+        {% endif %}
         {% if request.user.username %}
           <li><a href="{% url 'blog:user-logout' %}">Logout</a></li>
         {% else %}
@@ -13,9 +15,11 @@
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Java</a></li>
-        <li><a href="#">Python</a></li>
-        <li><a href="#">Other</a></li>
+        {% if blogTypes %}
+          {% for blogType in blogTypes %}
+            <li><a href="">{{blogType.name}}</a></li>
+          {% endfor %}
+        {% endif %}
         {% if request.user.username %}
           <li><a href="{% url 'blog:user-logout' %}">Logout</a></li>
         {% else %}

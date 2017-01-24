@@ -9,9 +9,10 @@
           <p>{{ blog.blog_content | safe }}</p>
           <p>bloged on: {{ blog.blog_updated_date | safe }}</p>
         </div>
-        <a class="waves-effect waves-light btn" href="{% url 'blog:blog-index' %}">Back</a>
+        <a class="waves-effect waves-light btn" href="{% url 'blog:blog-index' blog.blog_type %}">Back</a>
       </div>
-      <div class="fb-comments" data-href="{{ request.build_absolute_url}}" data-numposts="5">
+
+      <div class="fb-comments" data-href="{{ request.build_absolute_url }}" data-numposts="5">
       </div>
     </div>
   </div>
