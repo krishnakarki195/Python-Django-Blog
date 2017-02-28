@@ -12,3 +12,24 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+#my_profile{
+	padding: auto;
+	margin: auto;
+}
+
+#profile_head{
+	padding: 20px;
+}
+#profile_image{
+	padding: auto;
+	margin: auto;
+}
+#pp{
+	width: 300px;
+	height: 300px;
+	border-top-left-radius: 50% 50%;
+	border-top-right-radius: 50% 50%;
+	border-bottom-right-radius: 50% 50%;
+	border-bottom-left-radius: 50% 50%;
+}

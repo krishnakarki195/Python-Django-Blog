@@ -38,8 +38,21 @@
   <div class="container">
       <br>
       <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        <p>A modern responsive front-end framework based on Material Design A modern responsive front-end framework based on Material Design A modern responsive front-end framework based on Material DesignA modern responsive front-end framework based on Material DesignA modern responsive front-end framework based on Material DesignA modern responsive front-end framework based on Material DesignA modern responsive front-end framework based on Material Design A modern responsive front-end framework based on Material DesignA modern responsive front-end framework based on Material DesignA modern responsive front-end framework based on Material Design</p>
+        <div id="my_profile">
+          <div id="profile_head">
+            Hi I'M Krishna, a Man on the road of Information Technology Student (Computer Engineering) since 2009. Currently Studying Computer Engineering at Kantipur City College (KCC). Before Joining KCC my Under-Graduate study in Science.I had no idea about what actually is Computer Engineering, I was totally unknown to the (engineering)IT World. Only thing I had at that time was the energy to be something new. When i started Bachelor degree in Computer Engineering from there and since then I found it wonderful; I have been addicted on and happy to be the part of fastest growing computer technology and the Internet.
+          <hr />
+          </div>
+          <div id="profile_image">
+            <img id="pp" src="{% static 'blog/images/krishna.jpg' %}" />
+          </div>
+          <hr />
+          <div id="profile_description">
+          Save time in Word with new buttons that show up where you need them. To change the way a picture fits in your document, click it and a button for layout options appears next to it. When you work on a table, click where you want to add a row or a column, and then click the plus sign.
+Reading is easier, too, in the new Reading view. You can collapse parts of the document and focus on the text you want. If you need to stop reading before you reach the end, Word remembers where you left off - even on another device.
+
+          </div>
+        </div>
       </div>
       <br><br>
   </div>
@@ -57,9 +70,9 @@
           <a href="{% url 'blog:blog-add' %}" class="btn-floating red"><i class="material-icons">add</i></a>
           {% endif %}
         </li>
-        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <!-- <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
         <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li> -->
       </ul>
     </div>
   <!-- operation button ends here -->
@@ -69,7 +82,9 @@
   <!-- colomn divided contents block ends here  -->
 
   <!-- footer section starts here -->
+  {% block footer %}
     {% include 'blog/footer.html' %}
+  {% endblock footer %}
   <!-- footer section ends here -->
 
 
